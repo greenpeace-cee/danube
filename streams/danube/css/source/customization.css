@@ -290,16 +290,6 @@ div.crm-summary-contactname-block+.crm-actions-ribbon {
     grid-template-columns: var(--crm-input-label-width) 1fr;
 }
 
-/* unbold the labels */
-.crm-container div.crm-summary-row div.crm-label {
-    font-weight: normal !important; /* important overrides contactSummary.css that comes after this stylesheet */
-}
-
-/* instead bold the values */
-.crm-container div.crm-summary-row div.crm-label+div {
-    font-weight: bold;
-}
-
 /* drop the ugly mahusive roadsign-atop unreadable icon for things like do not email */
 .fa-stack .crm-i.fa-stack-2x {
     font-size: 1rem;
