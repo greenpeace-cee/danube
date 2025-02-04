@@ -20,3 +20,12 @@ function danube_civicrm_install(): void {
 function danube_civicrm_enable(): void {
   _danube_civix_civicrm_enable();
 }
+
+function danube_civicrm_themes(&$themes) {
+    $themes['danube'] = [
+        'ext' => 'riverlea',
+        'title' => 'Danube',
+        'prefix' => 'streams/danube/',
+        'search_order' => ['danube', '_riverlea_core_', '_fallback_'],
+    ];
+}
