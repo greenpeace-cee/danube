@@ -224,7 +224,7 @@
   --crm-expand-header-border-width: unset; /*0 0 1px 0*/; /* thames */
   --crm-expand-border: unset; /* thames */
   --crm-expand-border-width: unset; /* thames */
-  --crm-expand-body-bg: var(--crm-c-blue-overlay); /* thames  todo check*/
+  --crm-expand-body-bg: var(--crm-form-block-background); /* thames  todo check*/
   --crm-expand-body-box-shadow: unset;
   --crm-expand-body-padding: 0.25rem 2.8rem; /* thames */
 /* .crm-accordion-light */
