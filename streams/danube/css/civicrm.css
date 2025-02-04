@@ -1,7 +1,7 @@
-@import url(../../../core/css/_base.css); /* resets and civi wide styles */
-@import url(../../../core/css/_cms.css); /* CMS-specific hacks/workarounds */
-@import url(../../../core/css/_core.css); /* components and utility classes */
-@import url(../../../core/css/_fixes.css); /* deprecated-Civi handling, hacks/workarounds. one day this will go. */
+@import url(../../../../../core/ext/riverlea/core/css/_base.css); /* resets and civi wide styles */
+@import url(../../../../../core/ext/riverlea/core/css/_cms.css); /* CMS-specific hacks/workarounds */
+@import url(../../../../../core/ext/riverlea/core/css/_core.css); /* components and utility classes */
+@import url(../../../../../core/ext/riverlea/core/css/_fixes.css); /* deprecated-Civi handling, hacks/workarounds. one day this will go. */
 
 /* Only affect body colour in standalone */
 html.cms-standalone body {
@@ -482,14 +482,8 @@ nav.breadcrumb a {
 }
 
 /* Breadcrumbs */
-html.crm-standalone  nav.breadcrumb>ol {
-  display: flex;
-  gap: var(--crm-m);
-}
-.breadcrumb ol li:not(:first-child)::before {
-  content: " \BB ";
-  margin-inline-end: var(--crm-m);
-  color: var(--crm-c-blue-dark);
+html.crm-standalone  nav.breadcrumb {
+  display: none;
 }
 
 /* override _fixes.css */

@@ -23,7 +23,7 @@ function danube_civicrm_enable(): void {
 
 function danube_civicrm_themes(&$themes) {
     $themes['danube'] = [
-        'ext' => 'riverlea',
+        'ext' => 'danube',
         'title' => 'Danube',
         'prefix' => 'streams/danube/',
         'search_order' => ['danube', '_riverlea_core_', '_fallback_'],

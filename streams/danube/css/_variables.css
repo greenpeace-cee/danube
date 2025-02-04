@@ -6,7 +6,7 @@
 
 
 :root {
-  --crm-version: 'Thames, v' var(--crm-release);
+  --crm-version: 'Danube, v' var(--crm-release);
 /* FONTS */
 /* --crm-system-fonts:; */
   --crm-font: Lato, sans-serif;
