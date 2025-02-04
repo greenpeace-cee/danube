@@ -229,7 +229,7 @@
   --crm-expand-body-padding: 0.25rem 2.8rem; /* thames */
 /* .crm-accordion-light */
   --crm-expand2-header-bg: transparent;
-  --crm-expand2-header-bg-active: var(--crm-c-background-2);
+  --crm-expand2-header-bg-active: var(--crm-c-background2);
   --crm-expand2-header-weight: normal;
   --crm-expand2-header-font: unset;
   --crm-expand2-header-color: var(--crm-c-text);
