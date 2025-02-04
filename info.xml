@@ -2,7 +2,7 @@
 <extension key="danube" type="module">
   <file>danube</file>
   <name>Danube</name>
-  <description>FIXME</description>
+  <description>Danube theme</description>
   <license>AGPL-3.0</license>
   <authors>
     <author>
