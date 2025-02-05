@@ -29,3 +29,14 @@ function danube_civicrm_themes(&$themes) {
         'search_order' => ['danube', '_riverlea_core_', '_fallback_'],
     ];
 }
+
+function danube_civicrm_navigationMenu(&$menu) {
+    _danube_civix_insert_navigation_menu($menu, NULL, [
+        'label' => '',
+        'icon' => 'danube__flag danube__flag_austria',
+        'name' => 'danube__flag',
+        'url' => '#',
+        'weight' => 2,
+    ]);
+    _danube_civix_navigationMenu($menu);
+}

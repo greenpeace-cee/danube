@@ -1,0 +1,24 @@
+ul#civicrm-menu li[data-name="danube__flag"] > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+ul#civicrm-menu li[data-name="danube__flag"] > a:hover {
+    background: rgba(0,0,0,0);
+}
+
+.danube__flag {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.danube__flag.danube__flag_austria {
+    background-image: url("../../images/flags/austria.png");
+    height: 20px;
+    width: 30px;
+}

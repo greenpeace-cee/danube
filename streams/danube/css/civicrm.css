@@ -4,3 +4,4 @@
 @import url(../../../../../core/ext/riverlea/core/css/_fixes.css); /* deprecated-Civi handling, hacks/workarounds. one day this will go. */
 @import url(./source/variables.css);
 @import url(./source/customization.css);
+@import url(./source/flags.css);
