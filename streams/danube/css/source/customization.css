@@ -596,3 +596,11 @@ html.crm-standalone  nav.breadcrumb {
     /* the hover state gives crm-c-red-dark to the background */
     --crm-c-alert-text: var(--crm-c-red-light);
 }
+
+.crm-container #mainTabContainer ul.ui-tabs-nav a:focus {
+    outline: none;
+}
+
+.crm-container #mainTabContainer ul.ui-tabs-nav a {
+    cursor: pointer;
+}
