@@ -608,3 +608,12 @@ html.crm-standalone  nav.breadcrumb {
 table.dataTable {
     box-sizing: border-box;
 }
+
+#contact-summary .customFieldGroup.crm-accordion-light > summary {
+    padding-left: 1rem !important;
+}
+
+#contact-summary .customFieldGroup.crm-accordion-light > summary::before {
+    margin-left: -1rem;
+    margin-top: 0.3rem;
+}
