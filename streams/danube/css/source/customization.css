@@ -604,3 +604,7 @@ html.crm-standalone  nav.breadcrumb {
 .crm-container #mainTabContainer ul.ui-tabs-nav a {
     cursor: pointer;
 }
+
+table.dataTable {
+    box-sizing: border-box;
+}
