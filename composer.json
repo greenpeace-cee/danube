@@ -1,0 +1,12 @@
+{
+  "name": "greenpeace-cee/danube",
+  "description": "CiviCRM Danube theme",
+  "type": "civicrm-ext",
+  "license": "AGPL-3.0",
+  "authors": [
+    {
+      "name": "Patrick Figel",
+      "email": "pfigel@greenpeace.org"
+    }
+  ]
+}
