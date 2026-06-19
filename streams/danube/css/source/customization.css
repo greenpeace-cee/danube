@@ -1,4 +1,3 @@
-
 /* Only affect body colour in standalone */
 html.cms-standalone body {
     background-color: var(--crm-c-page-background);
@@ -10,27 +9,18 @@ html.cms-standalone body {
 }
 
 .crm-container details {
-    background-color: #bad0df45; /* @todo fix this to a var. */
+    background-color: var(--crm-expand-body-bg);
     border: var(--crm-c-divider);
 }
 
 .crm-container summary {
-    background-color: var(--crm-c-green-dark); /* novar */
     color: var(--crm-c-blue-darker); /* novar */
     cursor: pointer; /* show it's clickable */
     position: relative; /* so our animated triangle doesn't go walkies */
 }
-.crm-container :where(summary:hover,
-summary:focus) {
-    background-color: #b8daf4; /* novar */
-}
-
-/* RL introduces a border on focus which causes layout shift
- * https://lab.civicrm.org/extensions/riverlea/-/issues/49
- */
-.crm-container :focus,
-.crm-container .ui-dialog :focus {
-    border: none;
+.crm-container summary:hover,
+.crm-container summary:focus {
+    background-color: var(--crm-c-blue-overlay2);
 }
 
 /* Replace Riverlea's FontAwesome icon with our own shape. */
@@ -40,7 +30,7 @@ summary:focus) {
 .crm-container details>summary::before /* accordion8 (recommended) */,
 .crm-container .crm-accordion-header::before, /* accordion1, accordion2, accordion6 */
 .crm-container .crm-collapsible .collapsible-title::before /* accordion3 */ {
-    content: "";
+    --crm-expand-icon: '';
     border: .4rem solid transparent;
     border-left-color: var(--crm-expand-icon-color);
     position: absolute;
@@ -50,6 +40,23 @@ summary:focus) {
     transform-origin: .2rem 50%;
     transition: transform .25s ease;
 }
+/* fight the fixes.css */
+.crm-container .civicrm-community-messages .collapsible-title::before {
+    transform-origin: .2rem 50% !important;
+}
+/* advanced search */
+.crm-container details.crm-accordion-settings summary::before {
+    content: '';
+}
+/* extensions */
+.crm-container #extensions-main table.dataTable summary,
+.crm-container #extensions-addnew table.dataTable summary {
+    padding: 0 0 0 2rem !important;
+}
+.crm-container #extensions-main  details {
+    border: none;
+}
+
 /* we have to sort of re-state these rules because the specificity of the above overrules the 'open' state
  * note that a lot of non-recommended patterns use .collapsed, whereas details uses [open] - reverse logic.
  * This covers accordion1, accordion2, accordion6.
@@ -86,7 +93,7 @@ summary:focus) {
     animation: crm-details-show 240ms ease-in-out;
 }
 /* We don't want a different colour header bg on 'active' (open) but we do on hover
- * This does't work yet.*/
+ * This doesn't work yet.*/
 .crm-container .crm-accordion-bold>summary:is(:hover,
 :focus) {
     background-color: var(--crm-c-blue-overlay2);
@@ -113,7 +120,6 @@ summary:focus) {
     color: #fff;
     content: "\f0eb";
     display: inline-block;
-    font-size: 2rem;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     margin-left: -2.3rem;
@@ -149,6 +155,12 @@ summary:focus) {
 .crm-container a.button.delete-button:focus,
 .crm-container a.button.delete:hover {
     color: var(--crm-c-red-bright);
+}
+.crm-icon-picker-button {
+    float: none;
+}
+.crm-container .ui-button:not(.ui-button-icon-only).crm-icon-picker-button {
+    display: inline-flex;
 }
 
 /* DIALOGS */
@@ -249,10 +261,8 @@ summary:focus) {
     justify-self: center;
 }
 
-/* make count badges more readable */
-.crm-container .ui-tabs ul.ui-tabs-nav a em,
-.crm-container .nav-tabs a .badge {
-    padding: 0 0.2rem;
+.crm-summary-contactname-block:not(.crm-edit-ready) #crm-contactname-content {
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
 }
 
 /* RL has no margin-bottom so the actions ribbon touches the main contact block */
@@ -288,6 +298,16 @@ div.crm-summary-contactname-block+.crm-actions-ribbon {
 .crm-container div.crm-summary-row {
     display: grid;
     grid-template-columns: var(--crm-input-label-width) 1fr;
+}
+
+/* unbold the labels */
+.crm-container div.crm-summary-row div.crm-label {
+    font-weight: normal !important; /* important overrides contactSummary.css that comes after this stylesheet */
+}
+
+/* instead bold the values */
+.crm-container div.crm-summary-row div.crm-label+div {
+    font-weight: bold;
 }
 
 /* drop the ugly mahusive roadsign-atop unreadable icon for things like do not email */
@@ -378,48 +398,6 @@ div:has(> table .dropdown-toggle[aria-expanded="true"]) {
     padding-bottom: 20rem;
 }
 
-/* ...and adjust the individual row checkboxes to be in line
- * Ah, no we have no way to target these.
- * Would be nice if core markup identified this type of <td>
- */
-
-/* apply hanging indent to sorting buttons */
-.crm-container tr a.sorting,
-.crm-container tr a.sorting_asc,
-.crm-container tr a.sorting_desc,
-.crm-container table.dataTable thead th.sorting,
-.crm-container table.dataTable thead th.sorting_asc,
-.crm-container table.dataTable thead th.sorting_desc,
-.crm-search-display th.crm-sortable-col {
-    padding-left: calc(var(--crm-table-padding, 0) + 1ch);
-}
-.crm-container tr a.sorting::after,
-.crm-container tr a.sorting_asc::after,
-.crm-container tr a.sorting_desc::after,
-.crm-container table.dataTable thead th.sorting::after,
-.crm-container table.dataTable thead th.sorting_asc::after,
-.crm-container table.dataTable thead th.sorting_desc::after,
-.crm-search-display th.crm-sortable-col::after,
-.crm-container tr a.sorting::before,
-.crm-container tr a.sorting_asc::before,
-.crm-container tr a.sorting_desc::before,
-.crm-container table.dataTable thead th.sorting::before,
-.crm-container table.dataTable thead th.sorting_asc::before,
-.crm-container table.dataTable thead th.sorting_desc::before,
-.crm-search-display th.crm-sortable-col::before {
-    position: absolute;
-    margin-left: -1em;
-}
-
-/* ...and in searchkit, this is terribly awkward and could be fixed with a core PR to provide more classes */
-.crm-container .table > thead > tr > th:has(.crm-search-table-column-sort-icon) {
-    padding-left: 1.5ch;
-}
-.crm-search-display-table > table.table > thead > tr > th i.crm-search-table-column-sort-icon {
-    position: absolute;
-    margin-left: -1.5ch;
-}
-
 /* Advanced search: override searchForm.css for slightly better aligned fields */
 .advanced-search-fields {
     align-items: end;
@@ -468,8 +446,14 @@ nav.breadcrumb a {
 }
 
 /* Breadcrumbs */
-html.crm-standalone  nav.breadcrumb {
-    display: none;
+html.crm-standalone  nav.breadcrumb>ol {
+    display: flex;
+    gap: var(--crm-m);
+}
+.breadcrumb ol li:not(:first-child)::before {
+    content: " \BB ";
+    margin-inline-end: var(--crm-m);
+    color: var(--crm-c-blue-dark);
 }
 
 /* override _fixes.css */
@@ -487,7 +471,7 @@ html.crm-standalone  nav.breadcrumb {
 }
 
 /* e.g. search buttons followed by count of matches on SK screen */
-.crm-search-display .form-inline {
+.crm-search-display .form-inline:not(th,td) {
     padding: var(--crm-padding-reg) 0;
     display: flex;
     flex-wrap: wrap;
@@ -506,9 +490,7 @@ html.crm-standalone  nav.breadcrumb {
     border-radius: 1rem;
     animation: thames-spinner 1s infinite;
 }
-.fa-spin {
-    animation: none; /* placing animation on an odd-shaped item is a PITA for getting it 100% centred. */
-}
+
 /* Spinner for notifications .status-start notifications e.g. loading/saving. */
 .crm-status-box-outer.status-start .crm-status-box-inner {
     /* Allow space for spinner.*/
@@ -547,7 +529,7 @@ html.crm-standalone  nav.breadcrumb {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
-    src: url('../../../../../../core/ext/riverlea/fonts/lato-v24-latin-regular.woff2') format('woff2');
+    src: url('../../../fonts/lato-v24-latin-regular.woff2') format('woff2');
 }
 
 /* lato-italic - latin */
@@ -556,7 +538,7 @@ html.crm-standalone  nav.breadcrumb {
     font-family: 'Lato';
     font-style: italic;
     font-weight: 400;
-    src: url('../../../../../../core/ext/riverlea/fonts/lato-v24-latin-italic.woff2') format('woff2');
+    src: url('../../../fonts/lato-v24-latin-italic.woff2') format('woff2');
 }
 
 /* lato-700 - latin */
@@ -565,7 +547,7 @@ html.crm-standalone  nav.breadcrumb {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
-    src: url('../../../../../../core/ext/riverlea/fonts/lato-v24-latin-700.woff2') format('woff2');
+    src: url('../../../fonts/lato-v24-latin-700.woff2') format('woff2');
 }
 
 /* lato-700italic - latin */
@@ -574,7 +556,7 @@ html.crm-standalone  nav.breadcrumb {
     font-family: 'Lato';
     font-style: italic;
     font-weight: 700;
-    src: url('../../../../../../core/ext/riverlea/fonts/lato-v24-latin-700italic.woff2') format('woff2');
+    src: url('../../../fonts/lato-v24-latin-700italic.woff2') format('woff2');
 }
 
 /* Searchkit preview table headers go weird because of the button margin for the select-all button. */
@@ -582,38 +564,112 @@ html.crm-standalone  nav.breadcrumb {
 .crm-container th.crm-search-result-select {
     --crm-btn-margin: 0;
 }
+/* Searchkit accordions */
+.crm-search-admin-edit-columns details,
+.crm-search .crm-search-admin-relative details {
+    /*issue https://lab.civicrm.org/extensions/riverlea/-/issues/102 */
+    margin-left: 1rem;
+    /* crmSearchAdmin applies this var as the bg here and it does not suit us. */
+    --crm-c-page-background: transparent;
+}
 
 /* Override _dropdowns.css */
 #afGuiEditor .af-gui-bar .dropdown-menu {
-    --crm-c-alert-text: var(--crm-c-red-dark);
+    --crm-c-danger-text: var(--crm-c-red-dark);
 }
 /* Override contactSummary.css */
 #crm-contact-actions-list a.delete {
-    --crm-c-alert-text: var(--crm-c-red-dark);
+    --crm-c-danger-text: var(--crm-c-red-dark);
 }
 #crm-contact-actions-list a.delete:hover,
 #crm-contact-actions-list a.delete:focus {
     /* the hover state gives crm-c-red-dark to the background */
-    --crm-c-alert-text: var(--crm-c-red-light);
+    --crm-c-danger-text: var(--crm-c-red-light);
 }
 
-.crm-container #mainTabContainer ul.ui-tabs-nav a:focus {
-    outline: none;
+/* Fix Mosaico wizard */
+.crm_wizard__tille {
+    --crm-panel-background: transparent;
+}
+.crmb-wizard-button-right {
+    gap: 1rem;
 }
 
-.crm-container #mainTabContainer ul.ui-tabs-nav a {
-    cursor: pointer;
+/* Support contact dashboard image float */
+.contactCardRight:has(#crm-contact-thumbnail) .float-left {
+    width: calc(100% - var(--crm-flex-gap) - var(--crm-dash-image-size));
 }
 
-table.dataTable {
-    box-sizing: border-box;
+/* Quicksearch */
+ul.crm-quickSearch-results a {
+    padding: 0.25rem 1rem;
+    text-decoration: none;
+    color: var(--crm-c-link);
+}
+ul.crm-quickSearch-results .ui-state-active a /* mouse,keyboard nav */ {
+    background: var(--crm-c-blue);
+    color: var(--crm-c-link-hover);
+}
+ul.crm-quickSearch-results a:active {
+    background: white;
 }
 
-#contact-summary .customFieldGroup.crm-accordion-light > summary {
-    padding-left: 1rem !important;
+
+/* ajax status/saving notifications */
+.crm-status-box-msg {
+    color: white;
 }
 
-#contact-summary .customFieldGroup.crm-accordion-light > summary::before {
-    margin-left: -1rem;
-    margin-top: 0.3rem;
+.crm-status-box-outer {
+    position: fixed;
+    top: 2px;
+    right: 2px;
+    z-index: 100000;
+    background-image: none;
+    background-color: var(--crm-c-blue-dark);
+    padding: 0 1rem;
+    border-radius: 3px;
+    min-width: 8rem;
+    max-width: 13rem;
+    text-align: left;
+    --crm-c-background2: transparent;
+
+    .crm-status-box-msg {
+        color: white;
+    }
+
+    &.status-success {
+        background-color: var(--crm-c-green-dark);
+    }
+
+    &.status-error {
+        background-color: var(--crm-c-red-dark);
+    }
+}
+.crm-status-box-outer.status-start .crm-status-box-inner {
+    padding-left: 2.5ch;
+}
+.crm-status-box-outer.status-start .crm-status-box-inner::before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -2.5ch;
+    display: block;
+    content: '';
+    line-height: 1;
+    animation: loading-status-message 1s infinite;
+    transform-origin: center;
+    width: 1.5ch;
+    height: 1.5ch;
+    border: dashed 1px white;
+    border-radius: 2ch;
+}
+
+@keyframes loading-status-message {
+    0% {
+        transform: translateY(-50%);
+    }
+    100% {
+        transform: translateY(-50%) rotateZ(360deg);
+    }
 }
