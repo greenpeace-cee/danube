@@ -10,4 +10,4 @@ To update to latest version forked theme:
 
 ### Update fonts
 - copy files from: /ext/riverlea/fonts
-- to: /ext/danube/streams/danube/css/riverlea_fonts
+- to: /ext/danube/streams/danube/css/fonts
