@@ -1,3 +1,7 @@
-@import url(./source/variables.css);
-@import url(./source/customization.css);
-@import url(./source/flags.css);
+@import url(./base_theme_files/thames/_variables.css);
+@import url(./customization/_variables.css);
+
+@import url(./base_theme_files/thames/css/civicrm.css);
+@import url(./customization/css/civicrm.css);
+
+@import url(./customization/css/flags.css);

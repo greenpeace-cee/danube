@@ -18,7 +18,7 @@ ul#civicrm-menu li[data-name="danube__flag"] > a:hover {
 }
 
 .danube__flag.danube__flag_austria {
-    background-image: url("../../images/flags/austria.png");
+    background-image: url("../../../images/flags/austria.png");
     height: 20px;
     width: 30px;
 }
